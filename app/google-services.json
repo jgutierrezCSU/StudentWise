@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "899344920484",
+    "firebase_url": "https://studentorganizer-3d4cd.firebaseio.com",
+    "project_id": "studentorganizer-3d4cd",
+    "storage_bucket": "studentorganizer-3d4cd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:899344920484:android:e99b1c80853013d7091b31",
+        "android_client_info": {
+          "package_name": "com.jgutierrez.studentorg"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "899344920484-on9bennthdaahar8a0k92v8ndc4cedjt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsM4aJX6Dej3bDCow63WbrgcbCiKVi6hc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "899344920484-on9bennthdaahar8a0k92v8ndc4cedjt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
