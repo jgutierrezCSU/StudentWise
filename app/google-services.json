@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "899344920484-s6qes90qqcaseqpah5juk38e3gig9tq6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jgutierrez.studentorg",
+            "certificate_hash": "644e3e1d491d747a09bd0f063a4fa3972adb7df0"
+          }
+        },
+        {
+          "client_id": "899344920484-3n711nt94bq72h1hqbe50oao30v8cdrm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jgutierrez.studentorg",
+            "certificate_hash": "51698ef50b683e861dd14a58dac2c245678a1381"
+          }
+        },
+        {
           "client_id": "899344920484-on9bennthdaahar8a0k92v8ndc4cedjt.apps.googleusercontent.com",
           "client_type": 3
         }

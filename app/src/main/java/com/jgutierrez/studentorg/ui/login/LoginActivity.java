@@ -21,7 +21,9 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.content.Intent;
 
+import com.jgutierrez.studentorg.MainActivity;
 import com.jgutierrez.studentorg.R;
 import com.jgutierrez.studentorg.ui.login.LoginViewModel;
 import com.jgutierrez.studentorg.ui.login.LoginViewModelFactory;
@@ -70,6 +72,9 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 if (loginResult.getSuccess() != null) {
                     updateUiWithUser(loginResult.getSuccess());
+                    Intent intent = new Intent (LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
                 setResult(Activity.RESULT_OK);
 
@@ -127,5 +132,10 @@ public class LoginActivity extends AppCompatActivity {
 
     private void showLoginFailed(@StringRes Integer errorString) {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
+    }
+    //ByPass Log //implement a button for this
+    public void moveToHome(View view) {
+        Intent intent = new Intent (LoginActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 }
