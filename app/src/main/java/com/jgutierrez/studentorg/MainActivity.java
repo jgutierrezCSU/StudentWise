@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
-
+    //Check if the user logged in
         mAuth = FirebaseAuth.getInstance();
 
 
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
-      /*  if (currentUser == null) {
+       if (currentUser == null) {
 //No one signed in
             startActivity(new Intent(this, LoginActivity.class));
             this.finish();
@@ -37,8 +37,6 @@ public class MainActivity extends AppCompatActivity {
 //User logged in
             mTvEmail.setText(currentUser.getEmail());
         }
-
-
 
         mTvLogout.setOnClickListener(new OnClickListener() {
             @Override
@@ -49,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-*/
+
 
     }
 
