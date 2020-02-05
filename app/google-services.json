@@ -8,6 +8,43 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:899344920484:android:7e859d5fbf9bb4b5091b31",
+        "android_client_info": {
+          "package_name": "com.example.firebaseemailpasswordexample"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "899344920484-gsfcrj0btiorm6j3sr9es68k1p89ijfl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.firebaseemailpasswordexample",
+            "certificate_hash": "644e3e1d491d747a09bd0f063a4fa3972adb7df0"
+          }
+        },
+        {
+          "client_id": "899344920484-on9bennthdaahar8a0k92v8ndc4cedjt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsM4aJX6Dej3bDCow63WbrgcbCiKVi6hc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "899344920484-on9bennthdaahar8a0k92v8ndc4cedjt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:899344920484:android:e99b1c80853013d7091b31",
         "android_client_info": {
           "package_name": "com.jgutierrez.studentorg"
