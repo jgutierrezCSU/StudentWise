@@ -20,6 +20,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
     private EditText emailTV, passwordTV;
     private Button regBtn;
+    private Button backtoLogInBTN;
     private ProgressBar progressBar;
 
     private FirebaseAuth mAuth;
@@ -38,6 +39,13 @@ public class RegistrationActivity extends AppCompatActivity {
                 registerNewUser();
             }
         });
+        backtoLogInBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                backToLogIn();
+            }
+        });
+
     }
 
     private void registerNewUser() {
@@ -74,11 +82,16 @@ public class RegistrationActivity extends AppCompatActivity {
                     }
                 });
     }
+    private void backToLogIn(){
+        Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
+        startActivity(intent);
+    }
 
     private void initializeUI() {
         emailTV = findViewById(R.id.email);
         passwordTV = findViewById(R.id.password);
         regBtn = findViewById(R.id.register);
+        backtoLogInBTN = findViewById(R.id.toLogin);
         progressBar = findViewById(R.id.progressBar);
     }
 }
