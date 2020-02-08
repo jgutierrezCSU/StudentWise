@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 
 public class MainActivity extends AppCompatActivity {
+    //TODO: back button cannot go back to login/register activity
 
     Button registerBtn, loginBtn;
     private FirebaseAuth mAuth;
