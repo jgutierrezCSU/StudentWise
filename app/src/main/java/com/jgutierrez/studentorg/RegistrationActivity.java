@@ -15,6 +15,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RegistrationActivity extends AppCompatActivity {
 
@@ -22,17 +24,18 @@ public class RegistrationActivity extends AppCompatActivity {
     private Button regBtn;
     private Button backtoLogInBTN;
     private ProgressBar progressBar;
+    // for Regular Expression
+    private static final String EMAIL_PATTERN =
+            "^[a-z| \\d]+[@](mail.csuchico.edu)+$";
+
 
     private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
-
         mAuth = FirebaseAuth.getInstance();
-
         initializeUI();
-
         regBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,6 +57,17 @@ public class RegistrationActivity extends AppCompatActivity {
         String email, password;
         email = emailTV.getText().toString();
         password = passwordTV.getText().toString();
+        // for Regular Expression
+        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+        Matcher matcher = pattern.matcher(email);
+        // for Regular Expression
+        if (matcher.find()) {
+              email.substring(matcher.start(), matcher.end());
+        } else {
+            Toast.makeText(getApplicationContext(), "Needs to be Chico Edu mail...", Toast.LENGTH_LONG).show();
+            return;
+            // TODO handle condition when input doesn't have an email address
+        }
 
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(getApplicationContext(), "Please enter email...", Toast.LENGTH_LONG).show();
