@@ -14,12 +14,14 @@ public class DashboardActivity extends AppCompatActivity {
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
     static String  mUsername = "ANONYMOUS";
+    public static String userGroup = "ANONYMOUS";
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-
+        mAuth = FirebaseAuth.getInstance();
 
     // Initialize Firebase Auth
         // for checking if cur user is logged in
@@ -34,6 +36,11 @@ public class DashboardActivity extends AppCompatActivity {
         mUsername = mFirebaseUser.getDisplayName();
 
      }
+    }
+
+    @Override
+    public void onBackPressed() {
+        // super.onBackPressed();
     }
 
 
@@ -60,4 +67,6 @@ public class DashboardActivity extends AppCompatActivity {
         }
 
     }
+
+
 }
