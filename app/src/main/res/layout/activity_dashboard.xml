@@ -238,7 +238,7 @@ tools:context=".DashboardActivity">
 
     <!-- Column 2 -->
     <android.support.v7.widget.CardView
-        android:id="@+id/cardNotes2"
+        android:id="@+id/notescard"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_columnWeight="1"

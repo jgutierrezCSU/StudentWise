@@ -1,21 +1,30 @@
 package com.jgutierrez.studentorg;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 
-public class DashboardActivity extends AppCompatActivity {
+public class DashboardActivity extends AppCompatActivity implements View.OnClickListener {
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
     static String  mUsername = "ANONYMOUS";
     public static String userGroup = "ANONYMOUS";
     private FirebaseAuth mAuth;
+    // for cards
+    private CardView cardSched, cardGroupC, cardEvents, cardWeightCal ,cardAppoint,cardNotes;
+    private static Context context;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +45,22 @@ public class DashboardActivity extends AppCompatActivity {
         mUsername = mFirebaseUser.getDisplayName();
 
      }
+
+        // for Cards
+        cardSched= findViewById(R.id.schedulercard);
+        cardGroupC=findViewById(R.id.groupchatcard);
+        cardEvents=findViewById(R.id.eventscard);
+        cardWeightCal=findViewById(R.id.weightcalculatercard);
+        cardAppoint =findViewById(R.id.appointmentcard);
+        cardNotes=findViewById(R.id.notescard);
+        //for cards
+        cardSched.setOnClickListener(this);
+        cardGroupC.setOnClickListener(this);
+        cardEvents.setOnClickListener(this);
+        cardWeightCal.setOnClickListener(this);
+        cardAppoint.setOnClickListener(this);
+        cardNotes.setOnClickListener(this);
+
     }
 
     @Override
@@ -67,6 +92,35 @@ public class DashboardActivity extends AppCompatActivity {
         }
 
     }
+
+
+
+    // for selecting cards
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.schedulercard:
+                startActivity(new Intent(this, AddCourseActivity.class));
+                break;
+            case R.id.groupchatcard:
+                startActivity(new Intent(this, AddCourseActivity.class)); //TODO change acvtivties
+                break;
+            case R.id.eventscard:
+                startActivity(new Intent(this, AddCourseActivity.class));
+                break;
+            case R.id.weightcalculatercard:
+                startActivity(new Intent(this, AddCourseActivity.class));
+                break;
+            case R.id.appointmentcard:
+                startActivity(new Intent(this, AddCourseActivity.class));
+                break;
+            case R.id.notescard:
+                startActivity(new Intent(this, AddCourseActivity.class));
+                break;
+        }
+    }
+
+
 
 
 }
