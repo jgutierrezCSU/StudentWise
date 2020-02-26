@@ -39,7 +39,7 @@ tools:context=".DashboardActivity">
     <!-- Row 1 -->
 
     <!-- Column 1 -->
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/schedulercard"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -75,10 +75,10 @@ tools:context=".DashboardActivity">
 
         </LinearLayout>
 
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
     <!-- Column 2 -->
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/groupchatcard"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -114,12 +114,12 @@ tools:context=".DashboardActivity">
 
         </LinearLayout>
 
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
     <!-- Row 2 -->
 
     <!-- Column 1 -->
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/eventscard"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -155,10 +155,10 @@ tools:context=".DashboardActivity">
 
         </LinearLayout>
 
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
     <!-- Column 2 -->
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/weightcalculatercard"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -194,11 +194,11 @@ tools:context=".DashboardActivity">
 
         </LinearLayout>
 
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
     <!-- Row 3 -->
 
     <!-- Column 1 -->
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/appointmentcard"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -234,10 +234,10 @@ tools:context=".DashboardActivity">
 
         </LinearLayout>
 
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
     <!-- Column 2 -->
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/notescard"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -273,7 +273,7 @@ tools:context=".DashboardActivity">
 
         </LinearLayout>
 
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
 </GridLayout>
 
