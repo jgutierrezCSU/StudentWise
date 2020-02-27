@@ -101,7 +101,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.schedulercard:
-                startActivity(new Intent(this, ScheduleFragment.class));
+                startActivity(new Intent(this, ScheduleMainActivity.class));
                 break;
             case R.id.groupchatcard:
                 startActivity(new Intent(this, ScheduleFragment.class)); //TODO send to second Main Activities or not call it like this

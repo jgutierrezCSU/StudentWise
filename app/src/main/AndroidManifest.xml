@@ -23,7 +23,7 @@ package="com.jgutierrez.studentorg">
     <activity android:name=".RegistrationActivity" />
     <activity android:name=".DashboardActivity"></activity>
     <activity android:name=".LogMenu"></activity>
-
+    <activity android:name=".ScheduleMainActivity"></activity>
 </application>
 
 </manifest>

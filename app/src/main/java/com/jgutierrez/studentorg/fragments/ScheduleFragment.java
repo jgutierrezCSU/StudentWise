@@ -156,7 +156,7 @@ public class ScheduleFragment extends Fragment {
 
     private void adaptLinearLayout(LinearLayout layout, Map<String, CourseModel> coursesArray) {
         layout.removeAllViews();
-        Log.d("NEWADAPTOR",gson.toJson(coursesArray));
+
         int height  = 0 ;
         for(Map.Entry <String,CourseModel> item : coursesArray.entrySet()) {
             View inflated = inflateLayout(item.getKey(),item.getValue(),layout);

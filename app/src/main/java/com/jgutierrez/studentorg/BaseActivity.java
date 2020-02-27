@@ -27,7 +27,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        pref = getSharedPreferences("UnbeezyPref", Context.MODE_PRIVATE);
+        pref = getSharedPreferences("deafult", Context.MODE_PRIVATE);
     }
 
     @Override

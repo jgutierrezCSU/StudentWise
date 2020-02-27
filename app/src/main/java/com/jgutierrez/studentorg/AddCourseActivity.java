@@ -42,7 +42,6 @@ public class AddCourseActivity extends BaseActivity {
         setContentView(R.layout.activity_add_course);
         setToolbar(ACTIVITY_TITLE);
         scheduleString = getIntent().getStringExtra("scheduleData");
-        Log.d("SAMS", scheduleString);
         ImageButton colorFlagButton = findViewById(R.id.button_select_color);
         colorFlagButton.setOnClickListener(new View.OnClickListener() {
 
@@ -87,10 +86,8 @@ public class AddCourseActivity extends BaseActivity {
             if (resultCode == RESULT_OK) {
                 // A contact was picked.  Here we will just display it
                 // to the user.
-//                Log.d("UNBEEZY",(data.getStringExtra("scheduleList")));
                 String intentString = data.getStringExtra("scheduleList");
                 CourseScheduleItemModel[] scheduleItemModel = gson.fromJson(intentString, CourseScheduleItemModel[].class);
-//                Log.d("UNBEEZ", gson.toJson(scheduleItemModel));
                 if(scheduleItemModel.length == 0) {
                     cancelIcon.setVisibility(View.VISIBLE);
                     checkedIcon.setVisibility(View.GONE);
@@ -113,7 +110,6 @@ public class AddCourseActivity extends BaseActivity {
                 ConstraintLayout colorSample = findViewById(R.id.color_sample);
                 colorSample.setBackgroundColor(color);
                 model.setColorHex(String.format("#%06X", (0xFFFFFF & color)));
-                Log.d("UNBEZ",gson.toJson(model));
             }
         });
     }
