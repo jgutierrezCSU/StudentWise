@@ -7,13 +7,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.jgutierrez.studentorg.fragments.ScheduleFragment;
 
 
 public class DashboardActivity extends AppCompatActivity implements View.OnClickListener {
@@ -101,22 +101,22 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.schedulercard:
-                startActivity(new Intent(this, AddCourseActivity.class));
+                startActivity(new Intent(this, ScheduleFragment.class));
                 break;
             case R.id.groupchatcard:
-                startActivity(new Intent(this, AddCourseActivity.class)); //TODO change acvtivties
+                startActivity(new Intent(this, ScheduleFragment.class)); //TODO send to second Main Activities or not call it like this
                 break;
             case R.id.eventscard:
-                startActivity(new Intent(this, AddCourseActivity.class));
+                startActivity(new Intent(this, ScheduleFragment.class));
                 break;
             case R.id.weightcalculatercard:
-                startActivity(new Intent(this, AddCourseActivity.class));
+                startActivity(new Intent(this, ScheduleFragment.class));
                 break;
             case R.id.appointmentcard:
-                startActivity(new Intent(this, AddCourseActivity.class));
+                startActivity(new Intent(this, ScheduleFragment.class));
                 break;
             case R.id.notescard:
-                startActivity(new Intent(this, AddCourseActivity.class));
+                startActivity(new Intent(this, ScheduleFragment.class));
                 break;
         }
     }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.jgutierrez.studentorg.AddCourseActivity">
+    tools:context="com.jgutierrez.studentorg.ScheduleFragment">
 
     <include
         android:id="@+id/toolbar"

@@ -1,236 +1,215 @@
 package com.jgutierrez.studentorg;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
+
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.TextView;
+import android.widget.ImageView;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.ColorInt;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.jgutierrez.studentorg.model.SchedulesModel;
+import com.jgutierrez.studentorg.model.CourseModel;
+import com.jgutierrez.studentorg.model.CourseScheduleItemModel;
+import com.pes.androidmaterialcolorpickerdialog.ColorPicker;
+import com.pes.androidmaterialcolorpickerdialog.ColorPickerCallback;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
-public class AddCourseActivity extends AppCompatActivity {
+import java.util.Arrays;
+
+import static android.app.Activity.RESULT_OK;
+
+public class AddCourseActivity extends BaseActivity {
+    String ACTIVITY_TITLE ="Add New Schedule";
+    String NO_VALUE_ERROR = "No Value";
+    ColorPicker cp;
+    int selectedColor;
+    String scheduleString;
+    int REQUEST_CODE = 11;
+
+    CourseModel model;
+    ImageView checkedIcon;
+    ImageView cancelIcon;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_schedule);
-        //setRetainInstance(true);
-    }
-/*
-    SchedulesModel schedulesData;
-    CourseModel[] coursesArray;
-    LayoutInflater inflater;
-    LinearLayout coursesListView;
-    TableLayout tableLayout;
-    Gson gson = new Gson();
-    int REQUEST_CODE = 1;
-   // ScheduleFragmentController controller;
-    private static String LOG_TAG = "SCHED_FRAGMENT";
-   // public static ScheduleFragment _instance;
+        model = new CourseModel();
+        setContentView(R.layout.activity_add_course);
+        setToolbar(ACTIVITY_TITLE);
+        scheduleString = getIntent().getStringExtra("scheduleData");
+        Log.d("SAMS", scheduleString);
+        ImageButton colorFlagButton = findViewById(R.id.button_select_color);
+        colorFlagButton.setOnClickListener(new View.OnClickListener() {
 
-   public ScheduleFragment() {
-        controller = new ScheduleFragmentController(this);
-        schedulesData = new SchedulesModel();
-    }
-
-    public static ScheduleFragment getInstance() {
-        if (_instance == null) {
-            _instance = new ScheduleFragment();
-        }
-        return _instance;
-
-    }
-
-
-    @Override
-    public View onCreateView(LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(
-                R.layout.activity_show_schedule, container, false);
-        schedulesData = new SchedulesModel();
-        controller.updateScheduleData();
-        Intent intent = new Intent(getContext(), DataSyncService.class);
-        getActivity().startService(intent);
-        controller.updateData();
-        FloatingActionButton scheduleFAB = rootView.findViewById(R.id.schedule_insert_fab);
-        scheduleFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), AddCourseActivity.class);
-                intent.putExtra("scheduleData", gson.toJson(schedulesData));
-                startActivityForResult(intent, REQUEST_CODE);
+                showColorPicker();
             }
         });
-        coursesListView = rootView.findViewById(R.id.courses_list);
-        tableLayout = rootView.findViewById(R.id.table_schedule);
-        return rootView;
+        cp = new ColorPicker(AddCourseActivity.this, 0, 0, 0);
+        checkedIcon = findViewById(R.id.check_icon);
+        cancelIcon = findViewById(R.id.cancel_icon);
+        ImageButton scheduleButton = findViewById(R.id.button_select_schedule);
+        scheduleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showSelectScheduleActivity();
+            }
+        });
+
+        Button buttonAddCourse = findViewById(R.id.button_add_course);
+        buttonAddCourse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveCourse();
+            }
+        });
+
+
     }
 
-    public void onActivityResult(int requestCode, int resultCode,
-                                 Intent data) {
+
+
+    private void showSelectScheduleActivity() {
+        Intent intent = new Intent(this, SelectScheduleActivity.class);
+        intent.putExtra("scheduleData", scheduleString);
+        startActivityForResult(intent, REQUEST_CODE);
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode,
+                                    Intent data) {
         if (requestCode == REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                String intentString = data.getStringExtra("newCourse");
-                Log.d(LOG_TAG, intentString);
-                CourseModel model = gson.fromJson(intentString, CourseModel.class);
-                controller.addData(model);
-            }
-        }
-    }
-
-    private void setTable() {
-
-        Context context = getContext();
-        for (int i = 0; i < 11; i++) {
-            if (tableLayout.getChildAt(i + 1) != null)
-                tableLayout.removeViewAt(i + 1);
-            TableRow tableRow = new TableRow(context);
-            tableRow.setWeightSum(6);
-            TextView textview = new TextView(context);
-            textview.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 1f));
-            textview.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-            textview.setBackground(getResources().getDrawable(R.drawable.border_right_primary));
-            textview.setText(String.format("%02d.00", i + 7));
-            textview.setHeight(60);
-            textview.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
-            tableRow.addView(textview);
-
-            for (int j = 0; j < 5; j++) {
-                TextView textViewColumn = new TextView(context);
-                textViewColumn.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 1f));
-                textViewColumn.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-                if (schedulesData.getData()[i][j] != null) {
-                    textViewColumn.setBackgroundColor(Color.parseColor(schedulesData.getData()[i][j].getColorHex()));
+                // A contact was picked.  Here we will just display it
+                // to the user.
+//                Log.d("UNBEEZY",(data.getStringExtra("scheduleList")));
+                String intentString = data.getStringExtra("scheduleList");
+                CourseScheduleItemModel[] scheduleItemModel = gson.fromJson(intentString, CourseScheduleItemModel[].class);
+//                Log.d("UNBEEZ", gson.toJson(scheduleItemModel));
+                if(scheduleItemModel.length == 0) {
+                    cancelIcon.setVisibility(View.VISIBLE);
+                    checkedIcon.setVisibility(View.GONE);
                 } else {
+                    model.setSchedules(Arrays.asList(scheduleItemModel));
+                    cancelIcon.setVisibility(View.GONE);
+                    checkedIcon.setVisibility(View.VISIBLE);
                 }
 
-//                textViewColumn.setText(String.format("%d%d", j,i+1));
-                textViewColumn.setHeight(80);
-                textViewColumn.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
-                tableRow.addView(textViewColumn);
-                textview.setPadding(1, 1, 1, 1);
             }
-            tableLayout.addView(tableRow, i + 1);
         }
-
     }
-
-
-    public void updateLayout(final Map<String, CourseModel> coursesArray) {
-        getActivity().runOnUiThread(new Runnable() {
+    private void showColorPicker() {
+        cp.show();
+        cp.setCallback(new ColorPickerCallback() {
             @Override
-            public void run() {
-                adaptLinearLayout(coursesListView, coursesArray);
+            public void onColorChosen(@ColorInt int color) {
+                selectedColor = color;
+                cp.dismiss();
+                ConstraintLayout colorSample = findViewById(R.id.color_sample);
+                colorSample.setBackgroundColor(color);
+                model.setColorHex(String.format("#%06X", (0xFFFFFF & color)));
+                Log.d("UNBEZ",gson.toJson(model));
             }
         });
-
     }
 
-    private void adaptLinearLayout(LinearLayout layout, Map<String, CourseModel> coursesArray) {
-        layout.removeAllViews();
-        Log.d("NEWADAPTOR", gson.toJson(coursesArray));
-        int height = 0;
-        for (Map.Entry<String, CourseModel> item : coursesArray.entrySet()) {
-            View inflated = inflateLayout(item.getKey(), item.getValue(), layout);
-            layout.addView(inflated);
-            height += inflated.getMeasuredHeight();
-        }
-        layout.getLayoutParams().height = height;
-    }
-
-
-    private View inflateLayout(final String key, CourseModel model, ViewGroup parent) {
-        LayoutInflater inflater = getActivity().getLayoutInflater();
-        View inflated = inflater.inflate(R.layout.component_courses_list_view, parent, false);
-        inflated.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                controller.deleteCourseData(key);
-                return true;
-            }
-
-        });
-        TextView courseName = inflated.findViewById(R.id.course_name);
-        courseName.setText(String.format("%s %s", model.getCourseId(), model.getCourseName()));
-        TextView lecturerName = inflated.findViewById(R.id.lecturer_name);
-        lecturerName.setText(String.format("%s", model.getLecturerName()));
-        TreeMap<String, List<String>> roomMap = new TreeMap<>();
-        for (CourseScheduleItemModel item : model.getSchedules()) {
-            if (roomMap.get(item.getClassRoom()) == null) {
-                List<String> temp = new ArrayList<>();
-                temp.add(item.getTime());
-                roomMap.put(item.getClassRoom(), temp);
-            } else {
-                roomMap.get(item.getClassRoom()).add(item.getTime());
-            }
-        }
-        LinearLayout roomContainer = inflated.findViewById(R.id.room_container);
-        for (Map.Entry<String, List<String>> entry : roomMap.entrySet()) {
-            boolean first = true;
-            String room = "";
-            for (String item : entry.getValue()) {
-                if (first) {
-                    room = room.concat(item);
-                    first = false;
-                } else {
-                    room = room.concat(",");
-                    room = room.concat(item);
-                }
-
-            }
-            TextView textView = new TextView(getContext());
-            textView.setText(String.format("%s:%s", room, entry.getKey()));
-            roomContainer.addView(textView);
-
-        }
-        ImageButton mailIntent = inflated.findViewById(R.id.mail_button);
-        if (model.getLecturerEmail() != null && !model.getLecturerEmail().equals("")) {
-            final String lecturerMail = model.getLecturerEmail();
-            mailIntent.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(Intent.ACTION_SENDTO);
-                    intent.setType("text/plain");
-                    intent.putExtra(Intent.EXTRA_EMAIL, lecturerMail);
-                    intent.setData(Uri.parse(String.format("mailto:%s", lecturerMail)));
-                    getContext().startActivity(Intent.createChooser(intent, "Send Email"));
-                }
-            });
+    boolean checkCourseId() {
+        EditText courseId = findViewById(R.id.course_id);
+        if(courseId.getText() != null && !courseId.getText().toString().equals("")) {
+            model.setCourseId(courseId.getText().toString());
+            return true;
         } else {
-            mailIntent.setVisibility(View.GONE);
+            courseId.setError(NO_VALUE_ERROR);
+            return false;
         }
-
-        View colorFlag = inflated.findViewById(R.id.color_flag);
-        colorFlag.setBackgroundColor(Color.parseColor(model.getColorHex()));
-
-
-        return inflated;
     }
 
-    public void updateScheduleTable(SchedulesModel schedulesModel) {
-        this.schedulesData = schedulesModel;
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                setTable();
-            }
-        });
+    boolean checkCourseName() {
+        EditText courseName = findViewById(R.id.course_name);
+        if(courseName.getText() != null && !courseName.getText().toString().equals("")) {
+            model.setCourseName(courseName.getText().toString());
+            return true;
+        } else {
+            courseName.setError(NO_VALUE_ERROR);
+            return false;
+        }
     }
-*/
+
+    boolean checkLecturerName() {
+        EditText lecturerName = findViewById(R.id.lecturer_name);
+        if(lecturerName.getText() != null && !lecturerName.getText().toString().equals("")) {
+            model.setLecturerName(lecturerName.getText().toString());
+            return true;
+        } else {
+            lecturerName.setError(NO_VALUE_ERROR);
+            return false;
+        }
+    }
+
+    boolean checkLecturerEmail() {
+        EditText lecturerEmail = findViewById(R.id.lecturer_email);
+        if(lecturerEmail.getText() != null) {
+            model.setLecturerEmail(lecturerEmail.getText().toString());
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    boolean checkLecturerPhone() {
+        EditText lecturerPhone = findViewById(R.id.lecturer_phone);
+        if(lecturerPhone.getText() != null) {
+            model.setLecturerPhone(lecturerPhone.getText().toString());
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    boolean checkCourseSchedule() {
+        if(model.getSchedules() != null && model.getSchedules().size() != 0) {
+            cancelIcon.setVisibility(View.GONE);
+            checkedIcon.setVisibility(View.VISIBLE);
+            return true;
+        } else {
+            cancelIcon.setVisibility(View.VISIBLE);
+            checkedIcon.setVisibility(View.GONE);
+            return false;
+
+        }
+    }
+
+    boolean checkCourseColorFlag() {
+        if(model.getColorHex() != null && !model.getColorHex().equals("")) {
+            return true;
+        } else {
+            return false;
+
+        }
+    }
+
+    boolean checkComplete() {
+        boolean isComplete = true;
+        checkLecturerEmail();
+        checkLecturerPhone();
+        isComplete = isComplete && checkCourseId();
+        isComplete = isComplete && checkCourseName();
+        isComplete = isComplete && checkCourseColorFlag();
+        isComplete = isComplete && checkCourseSchedule();
+        isComplete = isComplete && checkLecturerName();
+        return isComplete;
+    }
+    void saveCourse() {
+        if(checkComplete()) {
+            Intent intent = new Intent();
+            intent.putExtra("newCourse", gson.toJson(model));
+            setResult(RESULT_OK, intent);
+            finish();
+        }
+    }
 }
