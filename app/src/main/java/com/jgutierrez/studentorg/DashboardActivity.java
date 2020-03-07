@@ -104,19 +104,19 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                 startActivity(new Intent(this, ScheduleMainActivity.class));
                 break;
             case R.id.groupchatcard:
-                startActivity(new Intent(this, ScheduleFragment.class)); //TODO send to second Main Activities or not call it like this
+                startActivity(new Intent(this, BlankActivity.class)); //TODO send to second Main Activities or not call it like this
                 break;
             case R.id.eventscard:
-                startActivity(new Intent(this, ScheduleFragment.class));
+                startActivity(new Intent(this, BlankActivity.class));
                 break;
             case R.id.weightcalculatercard:
-                startActivity(new Intent(this, ScheduleFragment.class));
+                startActivity(new Intent(this, BlankActivity.class));
                 break;
             case R.id.appointmentcard:
-                startActivity(new Intent(this, ScheduleFragment.class));
+                startActivity(new Intent(this, BlankActivity.class));
                 break;
             case R.id.notescard:
-                startActivity(new Intent(this, ScheduleFragment.class));
+                startActivity(new Intent(this, BlankActivity.class));
                 break;
         }
     }

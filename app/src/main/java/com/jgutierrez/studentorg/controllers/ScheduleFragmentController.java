@@ -11,6 +11,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
+import com.jgutierrez.studentorg.firebaseService.FirebaseDatabaseService;
 import com.jgutierrez.studentorg.fragments.ScheduleFragment;
 import com.jgutierrez.studentorg.model.CourseModel;
 import com.jgutierrez.studentorg.model.SchedulesItemModel;
@@ -31,9 +32,14 @@ public class ScheduleFragmentController {
     SchedulesModel schedulesData;
 
     Gson gson;
- //TODO: android studio suggested a deletion here
-    public ScheduleFragmentController(com.jgutierrez.studentorg.fragments.ScheduleFragment scheduleFragment) {
+    public ScheduleFragmentController(ScheduleFragment fragment) {
+        this.fragment = fragment;
+        coursesDataRef = FirebaseDatabaseService.getInstance().child("courses");
+        scheduleDataRef = FirebaseDatabaseService.getInstance().child("schedules");
+        gson = new Gson();
 
+        updateData();
+        updateScheduleData();
     }
 
     public void updateData() {
@@ -62,6 +68,7 @@ public class ScheduleFragmentController {
             }
         });
     }
+
     public void addData(CourseModel model) {
         coursesDataRef.push().setValue(model);
         updateData();
@@ -99,9 +106,12 @@ public class ScheduleFragmentController {
         });
 
     }
+
     public void deleteCourseData(String key) {
         coursesDataRef.child(key).removeValue();
         updateData();
         flushData();
     }
+
+
 }

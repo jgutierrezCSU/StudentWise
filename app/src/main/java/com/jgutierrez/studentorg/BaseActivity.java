@@ -49,7 +49,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         } else {
             // Get the name of the person and store in shared preferences
             personName = user.getDisplayName();
-            Log.d("BaseActivity", personName);
+
             SharedPreferences.Editor editor = pref.edit();
             editor.putString("personName", personName);
             editor.apply();

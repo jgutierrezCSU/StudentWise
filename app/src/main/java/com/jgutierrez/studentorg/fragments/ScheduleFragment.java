@@ -48,7 +48,7 @@ public class ScheduleFragment extends Fragment {
     Gson gson = new Gson();
     int REQUEST_CODE = 1;
     ScheduleFragmentController controller;
-    private static String LOG_TAG = "SCHED_FRAGMENT";
+
     public static ScheduleFragment _instance;
     public ScheduleFragment() {
         controller = new ScheduleFragmentController(this);
@@ -76,7 +76,7 @@ public class ScheduleFragment extends Fragment {
         View rootView = inflater.inflate(
                 R.layout.fragment_schedule, container, false);
         schedulesData = new SchedulesModel();
-        controller.updateScheduleData();
+       controller.updateScheduleData();
         Intent intent = new Intent(getContext(), DataSyncService.class);
         getActivity().startService(intent);
         controller.updateData();
@@ -99,7 +99,6 @@ public class ScheduleFragment extends Fragment {
         if (requestCode == REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 String intentString = data.getStringExtra("newCourse");
-                Log.d(LOG_TAG,intentString);
                 CourseModel model = gson.fromJson(intentString,CourseModel.class);
                 controller.addData(model);
             }

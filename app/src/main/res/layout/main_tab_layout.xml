@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="50dp">
 
-    <android.support.design.widget.TabLayout
+    <com.google.android.material.tabs.TabLayout
         android:id="@+id/main_tab_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -13,7 +13,7 @@
         app:tabIndicatorHeight="0dp"
         app:tabTextColor="@color/white">
 
-        <android.support.design.widget.TabItem
+        <com.google.android.material.tabs.TabItem
             android:id="@+id/scheduleTab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -21,5 +21,5 @@
             android:text="@string/schedule_tab" />
 
 
-    </android.support.design.widget.TabLayout>
+    </com.google.android.material.tabs.TabLayout>
 </FrameLayout>

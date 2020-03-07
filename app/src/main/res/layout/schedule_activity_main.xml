@@ -14,7 +14,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
     <include
         android:id="@+id/main_tab_layout_include"
         layout="@layout/main_tab_layout"

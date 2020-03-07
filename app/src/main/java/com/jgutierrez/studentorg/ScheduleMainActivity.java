@@ -20,7 +20,7 @@ public class ScheduleMainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard);
+        setContentView(R.layout.schedule_activity_main);
         mainActivityFragmentsAdapter = new MainActivityFragmentsAdapter(getSupportFragmentManager());
         viewPager = (ViewPager) findViewById(R.id.main_view_pager);
         viewPager.setAdapter(mainActivityFragmentsAdapter);
