@@ -3,6 +3,7 @@ package com.jgutierrez.studentorg.controllers;
 import android.content.Intent;
 import android.os.Build;
 import android.util.ArrayMap;
+import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
@@ -51,6 +52,7 @@ public class ScheduleFragmentController {
                    for(DataSnapshot item : dataSnapshot.getChildren()) {
                        coursesData.put(item.getKey(),item.getValue(CourseModel.class));
                    }
+                    Log.d("NEWONDATACHANGE",gson.toJson(coursesData));
                    fragment.updateLayout(coursesData);
                     Intent intent = new Intent(fragment.getContext(), DataSyncService.class);
                     fragment.getActivity().startService(intent);
@@ -63,6 +65,7 @@ public class ScheduleFragmentController {
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 coursesData = new ArrayMap<>();
+                Log.d("NEWMSHEDCANCELL",gson.toJson(coursesData));
                 fragment.updateLayout(coursesData);
 
             }

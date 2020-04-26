@@ -42,12 +42,16 @@ import static android.app.Activity.RESULT_OK;
 public class ScheduleFragment extends Fragment {
     SchedulesModel schedulesData;
     CourseModel[] coursesArray;
+    String an_array[];
     LayoutInflater inflater;
     LinearLayout coursesListView;
     TableLayout tableLayout;
     Gson gson = new Gson();
     int REQUEST_CODE = 1;
+    CourseModel[] aModel;
+    Map<String, CourseModel> a_Data;
     ScheduleFragmentController controller;
+    String intentString;
 
     public static ScheduleFragment _instance;
     public ScheduleFragment() {
@@ -98,9 +102,15 @@ public class ScheduleFragment extends Fragment {
                                     Intent data) {
         if (requestCode == REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                String intentString = data.getStringExtra("newCourse");
+                intentString = data.getStringExtra("newCourse");
+                Log.d("XXXHUHU",intentString.getClass().getName()); // String good here...
+                a_Data= new TreeMap<>();
+
+                Log.d("XXXADATA", String.valueOf(a_Data));
                 CourseModel model = gson.fromJson(intentString,CourseModel.class);
                 controller.addData(model);
+                Log.d("xxxCRSMDL",gson.toJson(model));// String good here...
+
             }
         }
     }
@@ -147,7 +157,8 @@ public class ScheduleFragment extends Fragment {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                adaptLinearLayout(coursesListView, coursesArray);
+                Log.d("NEWADAPTORUPDATE",gson.toJson(coursesArray));
+                adaptLinearLayout(coursesListView, coursesArray); // send good string here
             }
         });
 
@@ -155,7 +166,7 @@ public class ScheduleFragment extends Fragment {
 
     private void adaptLinearLayout(LinearLayout layout, Map<String, CourseModel> coursesArray) {
         layout.removeAllViews();
-
+        Log.d("NEWADAPTOR",gson.toJson(coursesArray));
         int height  = 0 ;
         for(Map.Entry <String,CourseModel> item : coursesArray.entrySet()) {
             View inflated = inflateLayout(item.getKey(),item.getValue(),layout);

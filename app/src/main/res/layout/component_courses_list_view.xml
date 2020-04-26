@@ -28,8 +28,7 @@
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/color_flag"
         tools:layout_editor_absoluteY="7dp"
-        android:layout_marginLeft="8dp"
-        tools:ignore="MissingConstraints" />
+         />
 
     <LinearLayout
         android:id="@+id/room_container"

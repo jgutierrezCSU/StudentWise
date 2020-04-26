@@ -21,8 +21,6 @@ import com.pes.androidmaterialcolorpickerdialog.ColorPickerCallback;
 
 import java.util.Arrays;
 
-import static android.app.Activity.RESULT_OK;
-
 public class AddCourseActivity extends BaseActivity {
     String ACTIVITY_TITLE ="Add New Schedule";
     String NO_VALUE_ERROR = "No Value";
@@ -116,6 +114,8 @@ public class AddCourseActivity extends BaseActivity {
 
     boolean checkCourseId() {
         EditText courseId = findViewById(R.id.course_id);
+        String data1=courseId.getText().toString();
+        Log.d("xxxID",data1);
         if(courseId.getText() != null && !courseId.getText().toString().equals("")) {
             model.setCourseId(courseId.getText().toString());
             return true;
@@ -127,6 +127,8 @@ public class AddCourseActivity extends BaseActivity {
 
     boolean checkCourseName() {
         EditText courseName = findViewById(R.id.course_name);
+        String data2=courseName.getText().toString();
+        Log.d("xxxCouName",data2);
         if(courseName.getText() != null && !courseName.getText().toString().equals("")) {
             model.setCourseName(courseName.getText().toString());
             return true;
@@ -138,6 +140,8 @@ public class AddCourseActivity extends BaseActivity {
 
     boolean checkLecturerName() {
         EditText lecturerName = findViewById(R.id.lecturer_name);
+        String data3=lecturerName.getText().toString();
+        Log.d("xxxLecName",data3);
         if(lecturerName.getText() != null && !lecturerName.getText().toString().equals("")) {
             model.setLecturerName(lecturerName.getText().toString());
             return true;
@@ -159,6 +163,8 @@ public class AddCourseActivity extends BaseActivity {
 
     boolean checkLecturerPhone() {
         EditText lecturerPhone = findViewById(R.id.lecturer_phone);
+        String data4=lecturerPhone.getText().toString();
+        Log.d("xxxPhone",data4);
         if(lecturerPhone.getText() != null) {
             model.setLecturerPhone(lecturerPhone.getText().toString());
             return true;
@@ -198,12 +204,18 @@ public class AddCourseActivity extends BaseActivity {
         isComplete = isComplete && checkCourseColorFlag();
         isComplete = isComplete && checkCourseSchedule();
         isComplete = isComplete && checkLecturerName();
+        if (isComplete == true){
+            Log.d("xxx","Good");
+        }
+
         return isComplete;
     }
     void saveCourse() {
         if(checkComplete()) {
             Intent intent = new Intent();
             intent.putExtra("newCourse", gson.toJson(model));
+
+            Log.d("xxxModel", String.valueOf(model));
             setResult(RESULT_OK, intent);
             finish();
         }

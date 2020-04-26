@@ -129,8 +129,6 @@ public class SelectScheduleActivity extends BaseActivity {
     private void addList(int row, int column) {
         CourseScheduleItemModel courseScheduleItem = new CourseScheduleItemModel();
         courseScheduleItem.setTime(String.format("%d%d",column,row));
-//        Log.d("SAMS_ACT",key+"");
-//        Log.d("SAMS_LOG",gson.toJson(scheduleDataMap));
         int key = getKey(row,column);
         scheduleDataMap.put(key, courseScheduleItem);
         TableRow tableRow = createScheduleRow(row, column,courseScheduleItem);
