@@ -7,25 +7,26 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView2"
+
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="269dp"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="Register Or LogIn" />
+        android:layout_height="230dp"
+        app:srcCompat="@drawable/an_icon" />
 
     <Button
         android:id="@+id/register"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Register"/>
+        android:layout_height="73dp"
+        android:text="Register" />
 
     <Button
         android:id="@+id/login"
         style="@android:style/Widget.Holo.Button.Small"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="74dp"
         android:text="Login"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
 
 </LinearLayout>

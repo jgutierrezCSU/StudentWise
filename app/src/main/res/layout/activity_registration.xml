@@ -32,6 +32,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Register" />
+    <Button
+        android:id="@+id/toLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Or LogIn" />
 
     <ProgressBar
         android:id="@+id/progressBar"
